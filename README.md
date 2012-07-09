@@ -45,4 +45,4 @@ Examples
 Running the Unit Tests
 ======================
 
-    Tests are run using [QUnit](http://docs.jquery.com/QUnit). All tests can be run using the test runner at [tests/index.html].
+Tests are run using [QUnit](http://docs.jquery.com/QUnit). All tests can be run using the test runner at [tests/index.html].
