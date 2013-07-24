@@ -1,7 +1,7 @@
 jQuery formatDateTime Plugin
 ============================
 
-A jQuery plugin that converts a date object to a supplied format. It was originally forked from the [jQuery UI DatePicker module](https://github.com/jquery/jquery-ui/blob/master/ui/jquery.ui.datepicker.js) to support time formatting.
+A jQuery plugin that converts a date object to a supplied format. It was forked from the [jQuery UI DatePicker module](https://github.com/jquery/jquery-ui/blob/master/ui/jquery.ui.datepicker.js) to support time formatting as well as the original date formatting.
 
 Formats
 =======

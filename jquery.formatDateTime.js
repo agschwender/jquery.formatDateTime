@@ -8,13 +8,13 @@
 
     var defaults = {
         monthNames: ['January','February','March','April','May','June',
-		     'July','August','September','October','November',
+                     'July','August','September','October','November',
                      'December'],
-	monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
                           'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-	dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
                    'Friday', 'Saturday'],
-	dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ampmNames: ['AM', 'PM'],
         attribute: 'data-datatime'
     };
@@ -25,62 +25,62 @@
 
     var formatDateTime = function(format, date, settings) {
         var output = '';
-	var literal = false;
+        var literal = false;
         var iFormat = 0;
 
         // Check whether a format character is doubled
         var lookAhead = function(match) {
-	    var matches = (iFormat + 1 < format.length
+            var matches = (iFormat + 1 < format.length
                            && format.charAt(iFormat + 1) == match);
-	    if (matches)
-	        iFormat++;
-	    return matches;
+            if (matches)
+                iFormat++;
+            return matches;
         };
 
         // Format a number, with leading zero if necessary
         var formatNumber = function(match, value, len) {
-	    var num = '' + value;
-	    if (lookAhead(match))
-	        while (num.length < len)
-		    num = '0' + num;
-	    return num;
+            var num = '' + value;
+            if (lookAhead(match))
+                while (num.length < len)
+                    num = '0' + num;
+            return num;
         };
 
         // Format a name, short or long as requested
         var formatName = function(match, value, shortNames, longNames) {
-	    return (lookAhead(match) ? longNames[value] : shortNames[value]);
+            return (lookAhead(match) ? longNames[value] : shortNames[value]);
         };
 
-	for (iFormat = 0; iFormat < format.length; iFormat++) {
-	    if (literal)
-		if (format.charAt(iFormat) == "'" && !lookAhead("'"))
-		    literal = false;
-	        else
-		    output += format.charAt(iFormat);
-	    else
-		switch (format.charAt(iFormat)) {
+        for (iFormat = 0; iFormat < format.length; iFormat++) {
+            if (literal)
+                if (format.charAt(iFormat) == "'" && !lookAhead("'"))
+                    literal = false;
+            else
+                output += format.charAt(iFormat);
+            else
+                switch (format.charAt(iFormat)) {
                 case 'a':
                     output += date.getHours() < 12
                         ? settings.ampmNames[0]
                         : settings.ampmNames[1];
                     break;
-		case 'd':
-		    output += formatNumber('d', date.getDate(), 2);
-		    break;
-		case 'D':
-		    output += formatName('D',
+                case 'd':
+                    output += formatNumber('d', date.getDate(), 2);
+                    break;
+                case 'D':
+                    output += formatName('D',
                                          date.getDay(),
                                          settings.dayNamesShort,
                                          settings.dayNames);
-		    break;
-		case 'o':
+                    break;
+                case 'o':
                     var end = new Date(date.getFullYear(),
-                                        date.getMonth(),
-                                        date.getDate()).getTime();
+                                       date.getMonth(),
+                                       date.getDate()).getTime();
                     var start = new Date(date.getFullYear(), 0, 0).getTime()
-		    output += formatNumber(
+                    output += formatNumber(
                         'o', Math.round((end - start) / 86400000), 3);
-		    break;
+                    break;
                 case 'g':
                     var hour = date.getHours() % 12;
                     output += formatNumber('g', (hour == 0 ? 12 : hour), 2);
@@ -94,41 +94,41 @@
                 case 'i':
                     output += formatNumber('i', date.getMinutes(), 2);
                     break;
-		case 'm':
-		    output += formatNumber('m', date.getMonth() + 1, 2);
-		    break;
-		case 'M':
-		    output += formatName('M',
+                case 'm':
+                    output += formatNumber('m', date.getMonth() + 1, 2);
+                    break;
+                case 'M':
+                    output += formatName('M',
                                          date.getMonth(),
                                          settings.monthNamesShort,
                                          settings.monthNames);
-		    break;
+                    break;
                 case 's':
                     output += formatNumber('s', date.getSeconds(), 2);
                     break;
-		case 'y':
-		    output += (lookAhead('y')
+                case 'y':
+                    output += (lookAhead('y')
                                ? date.getFullYear()
                                : (date.getYear() % 100 < 10 ? '0' : '')
                                + date.getYear() % 100);
-		    break;
-		case '@':
-		    output += date.getTime();
-		    break;
-		case '!':
-		    output += date.getTime() * 10000 + ticksTo1970;
-		    break;
-		case "'":
-		    if (lookAhead("'"))
-			output += "'";
-		    else
-			literal = true;
-		    break;
-		default:
-		    output += format.charAt(iFormat);
-		}
-	}
-	return output;
+                    break;
+                case '@':
+                    output += date.getTime();
+                    break;
+                case '!':
+                    output += date.getTime() * 10000 + ticksTo1970;
+                    break;
+                case "'":
+                    if (lookAhead("'"))
+                        output += "'";
+                    else
+                        literal = true;
+                    break;
+                default:
+                    output += format.charAt(iFormat);
+                }
+        }
+        return output;
     };
 
     $.fn.formatDateTime = function(format, settings) {
@@ -178,13 +178,14 @@
            ampmNames        string[2] - am/pm (optional)
            dayNamesShort    string[7] - abbreviated names of the days
                                         from Sunday (optional)
-	   dayNames         string[7] - names of the days from Sunday (optional)
-	   monthNamesShort  string[12] - abbreviated names of the months
+           dayNames         string[7] - names of the days from Sunday (optional)
+           monthNamesShort  string[12] - abbreviated names of the months
                                          (optional)
-	   monthNames       string[12] - names of the months (optional)
+           monthNames       string[12] - names of the months (optional)
            attribute        string - Attribute which stores datetime, defaults
                                      to data-datetime, only valid when called
-                                     dom element(s). If not present, uses text.
+                                     on dom element(s). If not present,
+                                     uses text.
        @return  string - the date in the above format
     */
     $.formatDateTime = function(format, date, settings) {
