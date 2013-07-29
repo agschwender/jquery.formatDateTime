@@ -85,11 +85,11 @@ Contributing
 
 This project is managed using [grunt](http://gruntjs.com/). To initialize the project, run
 
-   $ npm install
+    $ npm install
 
 Once initialized, run
 
-   $ grunt
+    $ grunt
 
 This will run all the tasks needed for building and testing the library. It will produce deployable versions of the library in the `dist` directory. For convenience to users who may not want to build the application, they are also included in the repository and should be included as part of any commits back to the repository.
 
