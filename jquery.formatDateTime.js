@@ -16,7 +16,7 @@
                    'Friday', 'Saturday'],
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ampmNames: ['AM', 'PM'],
-        attribute: 'data-datatime'
+        attribute: 'data-datetime'
     };
 
     var ticksTo1970 = (((1970 - 1) * 365 + Math.floor(1970 / 4)
