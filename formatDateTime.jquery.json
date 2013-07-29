@@ -8,7 +8,7 @@
     "time",
     "datetime"
   ],
-  "version": "1.0.4",
+  "version": "1.0.6",
   "author": {
     "name": "Adam Gschwender",
     "email": "adam.gschwender@gmail.com",
@@ -33,8 +33,8 @@
   ],
   "bugs": "https://github.com/agschwender/jquery.formatDateTime/issues",
   "homepage": "https://github.com/agschwender/jquery.formatDateTime",
-  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.4/README.md",
-  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.4.zip",
+  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.6/README.md",
+  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.6.zip",
   "dependencies": {
     "jquery": ">=1.5"
   }
