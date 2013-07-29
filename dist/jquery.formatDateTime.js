@@ -1,3 +1,10 @@
+/*
+ * jQuery Format Date/Time - v1.0.0 - 2013-07-29
+ * https://github.com/agschwender/jquery.formatDateTime
+ * Copyright (c) 2013 Adam Gschwender
+ * Licensed MIT, GPLv2
+ */
+
 /*!
  * jQuery formatDateTime Plugin
  *
