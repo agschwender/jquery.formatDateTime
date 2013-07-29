@@ -49,7 +49,7 @@
     "test": "grunt travis --verbose"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.3.14",
     "grunt-jquery-json": "~0.2.1"
   }
 }
