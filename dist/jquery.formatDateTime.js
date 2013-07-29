@@ -5,12 +5,6 @@
  * Licensed MIT, GPLv2
  */
 
-/*!
- * jQuery formatDateTime Plugin
- *
- * Copyright 2012 Adam Gschwender
- * Dual licensed under the MIT or GPL Version 2 licenses.
- */
 (function($) {
 
     var defaults = {

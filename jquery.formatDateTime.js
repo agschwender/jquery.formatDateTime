@@ -1,4 +1,4 @@
-/*!
+/*
  * jQuery formatDateTime Plugin
  *
  * Copyright 2012 Adam Gschwender
