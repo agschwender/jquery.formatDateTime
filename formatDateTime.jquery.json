@@ -1,6 +1,6 @@
 {
   "name": "formatDateTime",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "title": "jquery.formatDateTime",
   "author": {
     "name": {
@@ -30,8 +30,8 @@
     "datetime"
   ],
   "homepage": "https://github.com/agschwender/jquery.formatDateTime",
-  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.6/README.md",
-  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.6.zip",
+  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.7/README.md",
+  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.7.zip",
   "bugs": "https://github.com/agschwender/jquery.formatDateTime/issues",
   "maintainers": [
     {

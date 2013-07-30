@@ -85,4 +85,34 @@ describe("jQuery.formatDateTime test suite", function() {
             }
         }
     });
+
+    it('test attribute preference over text element', function() {
+        var format = 'yy-mm-dd hh:ii:ss.u a';
+        $e.attr('data-datetime', 'Mon, 09 Jul 2012 20:29:54');
+        $e.text('Tue, 10 Jul 2012 20:29:54');
+        var rv = $e.formatDateTime(format).text();
+        expect(rv).toEqual('2012-07-09 20:29:54.0 PM');
+    });
+
+    it('test empty attribute preference over text element', function() {
+        var format = 'yy-mm-dd hh:ii:ss.u a';
+        $e.attr('data-datetime', '');
+        $e.text('Tue, 10 Jul 2012 20:29:54');
+        var rv = $e.formatDateTime(format).text();
+        expect(rv).toBe('');
+    });
+
+    it('test removing attribute to prefer text element', function() {
+        var format = 'yy-mm-dd hh:ii:ss.u a';
+        $e.attr('data-datetime', 'Mon, 09 Jul 2012 20:29:54');
+        $e.text('Tue, 10 Jul 2012 20:29:54');
+        var rv = $e.formatDateTime(format).text();
+        expect(rv).toEqual('2012-07-09 20:29:54.0 PM');
+
+        $e.removeAttr('data-datetime');
+        $e.text('Tue, 10 Jul 2012 20:29:54');
+        rv = $e.formatDateTime(format).text();
+        expect(rv).toEqual('2012-07-10 20:29:54.0 PM');
+    });
+
 });

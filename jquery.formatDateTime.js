@@ -139,11 +139,19 @@
     };
 
     $.fn.formatDateTime = function(format, settings) {
-        settings = $.extend(defaults, settings);
-        var date = $(this).attr(settings.attribute) || $(this).text();
-        if (date) {
+        settings = $.extend({}, defaults, settings);
+        var date = $(this).attr(settings.attribute);
+
+        if (typeof date === 'undefined' || date === false) {
+            date = $(this).text();
+        }
+
+        if (date === '') {
+            $(this).text('');
+        } else {
             $(this).text(formatDateTime(format, new Date(date), settings));
         }
+
         return this;
     };
 
@@ -195,7 +203,7 @@
        @return  string - the date in the above format
     */
     $.formatDateTime = function(format, date, settings) {
-        settings = $.extend(defaults, settings);
+        settings = $.extend({}, defaults, settings);
         if (!date) { return ''; }
         return formatDateTime(format, date, settings);
     };
