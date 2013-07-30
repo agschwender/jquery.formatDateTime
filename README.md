@@ -100,7 +100,7 @@ This will run all the tasks needed for building and testing the library. It will
 Testing
 =======
 
-Tests are run using [Jasmine](http://pivotal.github.io/jasmine/) via the [grunt jasmine plugin](https://github.com/gruntjs/grunt-contrib-jasmine). They can be run once your environment has been set up (see [Contributing](#Contributing) for more details) by issuing
+Tests are run using [Jasmine](http://pivotal.github.io/jasmine/) via the [grunt jasmine plugin](https://github.com/gruntjs/grunt-contrib-jasmine). They can be run once your environment has been set up (see [Contributing](#contributing) for more details) by issuing
 
     $ grunt jasmine
 
