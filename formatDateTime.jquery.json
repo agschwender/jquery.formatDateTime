@@ -1,13 +1,11 @@
 {
   "name": "formatDateTime",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "title": "jquery.formatDateTime",
   "author": {
-    "name": {
-      "name": "Adam Gschwender",
-      "email": "adam.gschwender@gmail.com",
-      "url": "http://gschwa.com/"
-    }
+    "name": "Adam Gschwender",
+    "email": "adam.gschwender@gmail.com",
+    "url": "http://gschwa.com/"
   },
   "licenses": [
     {
@@ -30,8 +28,8 @@
     "datetime"
   ],
   "homepage": "https://github.com/agschwender/jquery.formatDateTime",
-  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.8/README.md",
-  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.8.zip",
+  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.9/README.md",
+  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.9.zip",
   "bugs": "https://github.com/agschwender/jquery.formatDateTime/issues",
   "maintainers": [
     {
