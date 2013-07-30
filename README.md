@@ -43,37 +43,51 @@ Examples
 
 Calling the function with a date.
 
-    $.formatDateTime('mm/dd/y g:ii a', new Date('2012/07/05 09:55:03')); // 07/05/12 9:55 AM
-    $.formatDateTime('mm/dd/y gg:ii:ss.uu a', new Date('2012/01/01 00:00:00.000')); // 01/01/12 12:00:00.000 AM
+```javascript
+$.formatDateTime('mm/dd/y g:ii a', new Date('2012/07/05 09:55:03')); // 07/05/12 9:55 AM
+$.formatDateTime('mm/dd/y gg:ii:ss.uu a', new Date('2012/01/01 00:00:00.000')); // 01/01/12 12:00:00.000 AM
+```
 
 Using an element attribute, e.g.
 
-    <span id="example" data-datetime="2012/07/05 09:55:03" />
+```html
+<span id="example" data-datetime="2012/07/05 09:55:03" />
+```
 
 and calling
 
-    $('#example').formatDateTime('mm/dd/y g:ii a');
+```javascript
+$('#example').formatDateTime('mm/dd/y g:ii a');
+```
 
 will produce
 
-    <span id="example" data-datetime="2012/07/05 09:55:03">07/05/12 9:55 AM</span>
+```html
+<span id="example" data-datetime="2012/07/05 09:55:03">07/05/12 9:55 AM</span>
+```
 
 Or it can override the text of an element, e.g.
 
-    <span id="example">2012/07/05 09:55:03</span>
+```html
+<span id="example">2012/07/05 09:55:03</span>
+```
 
 By calling
 
-    $('#example').formatDateTime('mm/dd/y g:ii a');
+```javascript
+$('#example').formatDateTime('mm/dd/y g:ii a');
+```
 
 will produce
 
-    <span id="example">07/05/12 9:55 AM</span>
+```html
+<span id="example">07/05/12 9:55 AM</span>
+```
 
 Testing
 =======
 
-Tests are run using [QUnit](http://docs.jquery.com/QUnit). All tests can be run through your browser using the test runner at tests/index.html.
+Tests are run using [QUnit](http://docs.jquery.com/QUnit). All tests can be run through your browser using the test runner at `tests/index.html`.
 
 Or alternatively, you can install [nodejs](http://nodejs.org/) and run:
 
