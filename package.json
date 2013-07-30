@@ -33,14 +33,11 @@
   ],
   "bugs": "https://github.com/agschwender/jquery.formatDateTime/issues",
   "homepage": "https://github.com/agschwender/jquery.formatDateTime",
-  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.6/README.md",
-  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.6.zip",
+  "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/master/README.md",
+  "download": "https://github.com/agschwender/jquery.formatDateTime/archive/master.zip",
   "repository": {
     "type": "git",
     "url": "git://github.com/agschwender/jquery.formatDateTime.git"
-  },
-  "dependencies": {
-    "jquery": ">=1.5"
   },
   "main": "jquery.formatDateTime",
   "engines": {
@@ -50,7 +47,12 @@
     "test": "grunt travis --verbose"
   },
   "devDependencies": {
-    "grunt": "~0.3.14",
-    "grunt-jquery-json": "~0.2.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-contrib-jshint": "~0.6.2",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-jquerymanifest": "~0.1.2"
   }
 }

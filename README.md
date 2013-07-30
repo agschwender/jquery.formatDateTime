@@ -84,16 +84,6 @@ will produce
 <span id="example">07/05/12 9:55 AM</span>
 ```
 
-Testing
-=======
-
-Tests are run using [QUnit](http://docs.jquery.com/QUnit). All tests can be run through your browser using the test runner at `tests/index.html`.
-
-Or alternatively, you can install [nodejs](http://nodejs.org/) and run:
-
-    $ npm install
-    $ grunt qunit
-
 Contributing
 ============
 
@@ -106,6 +96,15 @@ Once initialized, run
     $ grunt
 
 This will run all the tasks needed for building and testing the library. It will produce deployable versions of the library in the `dist` directory. For convenience to users who may not want to build the application, they are also included in the repository and should be included as part of any commits back to the repository.
+
+Testing
+=======
+
+Tests are run using [Jasmine](http://pivotal.github.io/jasmine/) via the [grunt jasmine plugin](https://github.com/gruntjs/grunt-contrib-jasmine). They can be run once your environment has been set up (see [Contributing](#Contributing) for more details) by issuing
+
+    $ grunt jasmine
+
+This will perform all tests of the library against jQuery versions 1.5 to 1.10.
 
 License
 =======
