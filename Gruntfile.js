@@ -142,7 +142,4 @@ module.exports = function(grunt) {
 
     // Test
     grunt.registerTask('test', ['jshint:src', 'jasmine']);
-
-    // Travis CI task.
-    grunt.registerTask('travis', ['jshint:src', 'jasmine']);
 };
