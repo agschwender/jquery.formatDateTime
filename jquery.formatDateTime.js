@@ -16,7 +16,8 @@
                    'Friday', 'Saturday'],
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ampmNames: ['AM', 'PM'],
-        attribute: 'data-datetime'
+        attribute: 'data-datetime',
+        formatAttribute: 'data-format'
     };
 
     var ticksTo1970 = (((1970 - 1) * 365 + Math.floor(1970 / 4)
@@ -140,7 +141,8 @@
 
     $.fn.formatDateTime = function(format, settings) {
         settings = $.extend({}, defaults, settings);
-        var date = $(this).attr(settings.attribute);
+        var date = $(this).attr(settings.attribute),
+            format = $(this).attr(settings.formatAttribute) || format;
 
         if (typeof date === 'undefined' || date === false) {
             date = $(this).text();
