@@ -4,7 +4,15 @@
  * Copyright 2012 Adam Gschwender
  * Dual licensed under the MIT or GPL Version 2 licenses.
  */
-(function($) {
+;(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else {
+        // Browser globals: jQuery or jQuery-like library, such as Zepto
+        factory(window.jQuery || window.$);
+    }
+}(function($) {
 
     var defaults = {
         monthNames: ['January','February','March','April','May','June',
@@ -210,4 +218,4 @@
         return formatDateTime(format, date, settings);
     };
 
-})(jQuery);
+}));
