@@ -4,7 +4,15 @@
  * Copyright 2012 Adam Gschwender
  * Dual licensed under the MIT or GPL Version 2 licenses.
  */
-(function($) {
+;(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else {
+        // Browser globals: jQuery or jQuery-like library, such as Zepto
+        factory(window.jQuery || window.$);
+    }
+}(function($) {
 
     var defaults = {
         monthNames: ['January','February','March','April','May','June',
@@ -16,7 +24,8 @@
                    'Friday', 'Saturday'],
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ampmNames: ['AM', 'PM'],
-        attribute: 'data-datetime'
+        attribute: 'data-datetime',
+        formatAttribute: 'data-dateformat'
     };
 
     var ticksTo1970 = (((1970 - 1) * 365 + Math.floor(1970 / 4)
@@ -142,6 +151,9 @@
         settings = $.extend({}, defaults, settings);
         var date = $(this).attr(settings.attribute);
 
+        // Use explicit format string first, then fallback to format attribute
+        format = format || $(this).attr(settings.formatAttribute);
+
         if (typeof date === 'undefined' || date === false) {
             date = $(this).text();
         }
@@ -208,4 +220,4 @@
         return formatDateTime(format, date, settings);
     };
 
-})(jQuery);
+}));
