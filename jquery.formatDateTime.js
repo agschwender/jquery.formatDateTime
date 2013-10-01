@@ -150,7 +150,7 @@
     $.fn.formatDateTime = function(format, settings) {
         settings = $.extend({}, defaults, settings);
         var date = $(this).attr(settings.attribute),
-            format = $(this).attr(settings.formatAttribute) || format;
+            format = format || $(this).attr(settings.formatAttribute);
 
         if (typeof date === 'undefined' || date === false) {
             date = $(this).text();
