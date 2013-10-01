@@ -149,8 +149,10 @@
 
     $.fn.formatDateTime = function(format, settings) {
         settings = $.extend({}, defaults, settings);
-        var date = $(this).attr(settings.attribute),
-            format = format || $(this).attr(settings.formatAttribute);
+        var date = $(this).attr(settings.attribute);
+
+        // Use explicit format string first, then fallback to format attribute
+        format = format || $(this).attr(settings.formatAttribute);
 
         if (typeof date === 'undefined' || date === false) {
             date = $(this).text();
