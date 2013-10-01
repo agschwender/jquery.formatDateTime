@@ -1,5 +1,5 @@
 /*
- * jQuery Format Date/Time - v1.0.9 - 2013-10-01
+ * jQuery Format Date/Time - v1.0.10 - 2013-10-01
  * https://github.com/agschwender/jquery.formatDateTime
  * Copyright (c) 2013 Adam Gschwender
  * Licensed MIT, GPLv2
@@ -25,7 +25,7 @@
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ampmNames: ['AM', 'PM'],
         attribute: 'data-datetime',
-        formatAttribute: 'data-format'
+        formatAttribute: 'data-dateformat'
     };
 
     var ticksTo1970 = (((1970 - 1) * 365 + Math.floor(1970 / 4)
