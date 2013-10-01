@@ -66,6 +66,24 @@ will produce
 <span id="example" data-datetime="2012/07/05 09:55:03">07/05/12 9:55 AM</span>
 ```
 
+Or you can specify the date format in the `data-dateformat` attribute in the element, e.g.
+
+```html
+<span id="example" data-datetime="2012/07/05 09:55:03" data-dateformat="mm/dd/y g:ii a">07/05/12 9:55 AM</span>
+```
+
+and calling
+
+```javascript
+$('#example').formatDateTime()
+```
+
+will produce
+
+```html
+<span id="example" data-datetime="2012/07/05 09:55:03" data-dateformat="mm/dd/y g:ii a">07/05/12 9:55 AM</span>
+```
+
 Or it can override the text of an element, e.g.
 
 ```html
