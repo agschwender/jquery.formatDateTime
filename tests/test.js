@@ -115,4 +115,37 @@ describe("jQuery.formatDateTime test suite", function() {
         expect(rv).toEqual('2012-07-10 20:29:54.0 PM');
     });
 
+    it('test data-dateformat attribute in DOM element, no format string in constructor', function(){
+        for (var date in cases) {
+            $e.attr('data-datetime', date);
+
+            for (var i = 0, len = cases[date].length; i < len; i++) {
+                var format = cases[date][i][0],
+                    expected = cases[date][i][1];
+
+                $e.attr('data-dateformat', format);
+
+                var rv = $e.formatDateTime().text();
+                expect(rv).toEqual(expected);
+            }
+        }
+    });
+
+    it('test preference for format string in constructor over data-dateformat attribute', function(){
+        var attrDateTime = 'Mon, 09 Jul 2012 20:29:54',
+            attrFormat = 'yy-mm-dd hh:ii:ss.u a',
+            attrExpected = '2012-07-09 20:29:54.0 PM',
+            format = 'DD, MM d, yy',
+            expected = 'Monday, July 9, 2012';
+
+        $e.attr('data-datetime', attrDateTime);
+
+        $e.attr('data-dateformat', attrFormat);
+        var rv = $e.formatDateTime().text();
+        expect(rv).toEqual(attrExpected);
+
+        rv = $e.formatDateTime(format).text();
+        expect(rv).toEqual(expected);
+    });
+
 });
