@@ -20,10 +20,6 @@
   "dependencies": {
     "jquery": ">=1.5"
   },
-  "homepage": {
-    "type": "git",
-    "url": "git://github.com/agschwender/jquery.formatDateTime.git"
-  },
   "description": "A jQuery plugin that converts a date object to a supplied format. It was forked from the jQuery UI DatePicker module to support time formatting as well as the original date formatting.",
   "keywords": [
     "format",
@@ -31,6 +27,7 @@
     "time",
     "datetime"
   ],
+  "homepage": "https://github.com/agschwender/jquery.formatDateTime",
   "docs": "https://github.com/agschwender/jquery.formatDateTime/blob/1.0.10/README.md",
   "download": "https://github.com/agschwender/jquery.formatDateTime/archive/1.0.10.zip",
   "bugs": "https://github.com/agschwender/jquery.formatDateTime/issues",
