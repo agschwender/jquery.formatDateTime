@@ -25,7 +25,8 @@
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ampmNames: ['AM', 'PM'],
         attribute: 'data-datetime',
-        formatAttribute: 'data-dateformat'
+        formatAttribute: 'data-dateformat',
+		dayOrdinals: ['th','st','nd','rd']
     };
 
     var ticksTo1970 = (((1970 - 1) * 365 + Math.floor(1970 / 4)
@@ -57,6 +58,16 @@
             }
             return num;
         };
+		
+		var getOrdinalForDate = function (value) {
+			if(value>3 && value<21) return 'th'; // thanks kennebec
+			switch (value % 10) {
+				case 1:  return "st";
+			    case 2:  return "nd";
+			    case 3:  return "rd";
+			    default: return "th";
+			}
+		}
 
         // Format a name, short or long as requested
         var formatName = function(match, value, shortNames, longNames) {
@@ -81,6 +92,9 @@
                 case 'd':
                     output += formatNumber('d', date.getDate(), 2);
                     break;
+				case 'r':
+					output += getOrdinalForDate(date.getDate());
+					break;
                 case 'D':
                     output += formatName('D',
                                          date.getDay(),
@@ -173,6 +187,7 @@
        a - Ante meridiem and post meridiem
        d  - day of month (no leading zero)
        dd - day of month (two digit)
+	   r  - ordinal for day of month
        o  - day of year (no leading zeros)
        oo - day of year (three digit)
        D  - day name short
