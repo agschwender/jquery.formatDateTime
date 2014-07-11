@@ -13,7 +13,6 @@ The plugin supports the following formatting combinations:
     a - Ante meridiem and post meridiem
     d  - day of month (no leading zero)
     dd - day of month (two digit)
-	r  - ordinal for day of month
     o  - day of year (no leading zeros)
     oo - day of year (three digit)
     D  - day name short
@@ -30,6 +29,7 @@ The plugin supports the following formatting combinations:
     mm - month of year (two digit)
     M  - month name short
     MM - month name long
+    S  - ordinal suffix for the previous unit
     s  - second of minute (no leading zero)
     ss - second of minute (two digit)
     y  - year (two digit)
@@ -108,7 +108,7 @@ Contributing
 
 This project is managed using [grunt](http://gruntjs.com/). To initialize the project, run
 
-    $ npm install
+    $ npm install -g grunt-cli
 
 Once initialized, run
 
