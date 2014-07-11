@@ -16,6 +16,9 @@ describe("jQuery.formatDateTime test suite", function() {
         '2012/01/01 00:00:00': [
             ['mm/dd/y gg:ii:ss.u a', '01/01/12 12:00:00.0 AM'],
             ['mm/dd/y hh:ii:ss.uu a', '01/01/12 00:00:00.000 AM']
+        ],
+        '2001/02/03 00:04:21': [
+            ['yyS mS ddS gS iS sSS', '2001st 2nd 03rd 12th 4th 21st']
         ]
     };
 
@@ -86,6 +89,22 @@ describe("jQuery.formatDateTime test suite", function() {
         }
     });
 
+    it('test date formatting, custom suffix', function() {
+        var opts = {getSuffix: function(v) { return 'o'; }};
+        for (var date in cases) {
+            for (var i = 0; i < cases[date].length; i++) {
+                var format = cases[date][i][0];
+                var expected = cases[date][i][1]
+                    .replace(/(\d)st/g, '$1o')
+                    .replace(/(\d)nd/g, '$1o')
+                    .replace(/(\d)rd/g, '$1o')
+                    .replace(/(\d)th/g, '$1o');
+                var rv = jQuery.formatDateTime(format, new Date(date), opts);
+                expect(rv).toEqual(expected);
+            }
+        }
+    });
+
     it('test attribute preference over text element', function() {
         var format = 'yy-mm-dd hh:ii:ss.u a';
         $e.attr('data-datetime', 'Mon, 09 Jul 2012 20:29:54');
@@ -115,7 +134,7 @@ describe("jQuery.formatDateTime test suite", function() {
         expect(rv).toEqual('2012-07-10 20:29:54.0 PM');
     });
 
-    it('test data-dateformat attribute in DOM element, no format string in constructor', function(){
+    it('test data-dateformat attribute in DOM element, no format string in constructor', function() {
         for (var date in cases) {
             $e.attr('data-datetime', date);
 
@@ -131,7 +150,7 @@ describe("jQuery.formatDateTime test suite", function() {
         }
     });
 
-    it('test preference for format string in constructor over data-dateformat attribute', function(){
+    it('test preference for format string in constructor over data-dateformat attribute', function() {
         var attrDateTime = 'Mon, 09 Jul 2012 20:29:54',
             attrFormat = 'yy-mm-dd hh:ii:ss.u a',
             attrExpected = '2012-07-09 20:29:54.0 PM',

@@ -1,7 +1,7 @@
 /*
- * jQuery Format Date/Time - v1.0.11 - 2013-10-06
+ * jQuery Format Date/Time - v1.0.11 - 2014-07-10
  * https://github.com/agschwender/jquery.formatDateTime
- * Copyright (c) 2013 Adam Gschwender
+ * Copyright (c) 2014 Adam Gschwender
  * Licensed MIT, GPLv2
  */
 ;(function (factory) {
@@ -24,6 +24,18 @@
                    'Friday', 'Saturday'],
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         ampmNames: ['AM', 'PM'],
+        getSuffix: function (num) {
+            if (num > 3 && num < 21) {
+                return 'th';
+            }
+
+            switch (num % 10) {
+            case 1:  return "st";
+            case 2:  return "nd";
+            case 3:  return "rd";
+            default: return "th";
+            }
+        },
         attribute: 'data-datetime',
         formatAttribute: 'data-dateformat'
     };
@@ -63,6 +75,21 @@
             return (lookAhead(match) ? longNames[value] : shortNames[value]);
         };
 
+        // Get the value for the supplied unit, e.g. year for y
+        var getUnitValue = function(unit) {
+            switch (unit) {
+            case 'y': return date.getFullYear();
+            case 'm': return date.getMonth() + 1;
+            case 'd': return date.getDate();
+            case 'g': return date.getHours() % 12 || 12;
+            case 'h': return date.getHours();
+            case 'i': return date.getMinutes();
+            case 's': return date.getSeconds();
+            case 'u': return date.getMilliseconds();
+            default: return '';
+            }
+        };
+
         for (iFormat = 0; iFormat < format.length; iFormat++) {
             if (literal) {
                 if (format.charAt(iFormat) == "'" && !lookAhead("'")) {
@@ -81,6 +108,10 @@
                 case 'd':
                     output += formatNumber('d', date.getDate(), 2);
                     break;
+                case 'S':
+                    var v = getUnitValue(iFormat && format.charAt(iFormat-1));
+                    output += (v && (settings.getSuffix || $.noop)(v)) || '';
+                    break;
                 case 'D':
                     output += formatName('D',
                                          date.getDay(),
@@ -96,8 +127,7 @@
                         'o', Math.round((end - start) / 86400000), 3);
                     break;
                 case 'g':
-                    var hour = date.getHours() % 12;
-                    output += formatNumber('g', (hour === 0 ? 12 : hour), 2);
+                    output += formatNumber('g', date.getHours() % 12 || 12, 2);
                     break;
                 case 'h':
                     output += formatNumber('h', date.getHours(), 2);
@@ -189,6 +219,7 @@
        mm - month of year (two digit)
        M  - month name short
        MM - month name long
+       S  - ordinal suffix for the previous unit
        s  - second of minute (no leading zero)
        ss - second of minute (two digit)
        y  - year (two digit)
@@ -208,10 +239,14 @@
            monthNamesShort  string[12] - abbreviated names of the months
                                          (optional)
            monthNames       string[12] - names of the months (optional)
+           getSuffix        function(num) - accepts a number and returns
+                                            its suffix
            attribute        string - Attribute which stores datetime, defaults
                                      to data-datetime, only valid when called
                                      on dom element(s). If not present,
                                      uses text.
+           formatAttribute  string - Attribute which stores the format, defaults
+                                     to data-dateformat.
        @return  string - the date in the above format
     */
     $.formatDateTime = function(format, date, settings) {
