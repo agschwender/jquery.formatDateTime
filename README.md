@@ -10,7 +10,7 @@ Formats
 
 The plugin supports the following formatting combinations:
 
-    a - Ante meridiem and post meridiem
+    a  - ante meridiem and post meridiem
     d  - day of month (no leading zero)
     dd - day of month (two digit)
     o  - day of year (no leading zeros)
@@ -123,7 +123,7 @@ Tests are run using [Jasmine](http://pivotal.github.io/jasmine/) via the [grunt 
 
     $ grunt test
 
-This will perform all tests of the library against jQuery versions 1.5 to 1.10.
+This will perform all tests of the library against jQuery versions 1.5 to 2.1.
 
 License
 =======

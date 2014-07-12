@@ -80,6 +80,18 @@ module.exports = function(grunt) {
                     vendor: 'http://code.jquery.com/jquery-1.10.2.js'
                 }
             },
+            jQuery_1_11: {
+                src: '<%= pkg.name %>.js',
+                options: {
+                    vendor: 'http://code.jquery.com/jquery-1.11.1.js'
+                }
+            },
+            jQuery_2_1: {
+                src: '<%= pkg.name %>.js',
+                options: {
+                    vendor: 'http://code.jquery.com/jquery-2.1.1.js'
+                }
+            },
             jQuery_latest: {
                 src: '<%= pkg.name %>.js',
                 options: {
