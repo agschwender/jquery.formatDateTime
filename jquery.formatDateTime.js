@@ -23,7 +23,7 @@
         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
                    'Friday', 'Saturday'],
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        ampmNames: ['AM', 'PM'],
+        ampmNames: ['am', 'pm', 'AM', 'PM'],
         getSuffix: function (num) {
             if (num > 3 && num < 21) {
                 return 'th';
@@ -104,6 +104,11 @@
                     output += date.getHours() < 12
                         ? settings.ampmNames[0]
                         : settings.ampmNames[1];
+                    break;
+                case 'A':
+                    output += date.getHours() < 12
+                        ? settings.ampmNames[2]
+                        : settings.ampmNames[3];
                     break;
                 case 'd':
                     output += formatNumber('d', date.getDate(), 2);

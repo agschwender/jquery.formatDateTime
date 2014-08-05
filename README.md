@@ -10,7 +10,8 @@ Formats
 
 The plugin supports the following formatting combinations:
 
-    a  - ante meridiem and post meridiem
+    a  - lower case ante meridiem and post meridiem (am/pm)
+    A  - upper case ante meridiem and post meridiem (AM/PM)
     d  - day of month (no leading zero)
     dd - day of month (two digit)
     o  - day of year (no leading zeros)
