@@ -3,19 +3,24 @@
 describe("jQuery.formatDateTime test suite", function() {
     var cases = {
         'Mon, 09 Jul 2012 20:29:54': [
-            ['yy-mm-dd hh:ii:ss.u a', '2012-07-09 20:29:54.0 PM'],
-            ['m/d/y g:ii:ss a', '7/9/12 8:29:54 PM'],
+            ['yy-mm-dd hh:ii:ss.u a', '2012-07-09 20:29:54.0 pm'],
+            ['yy-mm-dd hh:ii:ss.u A', '2012-07-09 20:29:54.0 PM'],
+            ['m/d/y g:ii:ss a', '7/9/12 8:29:54 pm'],
+            ['m/d/y g:ii:ss A', '7/9/12 8:29:54 PM'],
             ['DD, MM d, yy', 'Monday, July 9, 2012'],
             ['D, M d, yy', 'Mon, Jul 9, 2012']
         ],
         '2012/07/05 09:55:03': [
-            ['mm/dd/y g:ii a', '07/05/12 9:55 AM'],
+            ['mm/dd/y g:ii a', '07/05/12 9:55 am'],
+            ['mm/dd/y g:ii A', '07/05/12 9:55 AM'],
             ['mm/dd/y h:ii', '07/05/12 9:55'],
             ['o, yy hh:ii', '187, 2012 09:55']
         ],
         '2012/01/01 00:00:00': [
-            ['mm/dd/y gg:ii:ss.u a', '01/01/12 12:00:00.0 AM'],
-            ['mm/dd/y hh:ii:ss.uu a', '01/01/12 00:00:00.000 AM']
+            ['mm/dd/y gg:ii:ss.u a', '01/01/12 12:00:00.0 am'],
+            ['mm/dd/y gg:ii:ss.u A', '01/01/12 12:00:00.0 AM'],
+            ['mm/dd/y hh:ii:ss.uu a', '01/01/12 00:00:00.000 am'],
+            ['mm/dd/y hh:ii:ss.uu A', '01/01/12 00:00:00.000 AM']
         ],
         '2001/02/03 00:04:21': [
             ['yyS mS ddS gS iS sSS', '2001st 2nd 03rd 12th 4th 21st']
@@ -76,11 +81,13 @@ describe("jQuery.formatDateTime test suite", function() {
     });
 
     it('test date formatting, custom AM/PM', function() {
-        var opts = {ampmNames: ['FOO', 'BAR']};
+        var opts = {ampmNames: ['foo', 'bar','FOO', 'BAR']};
         for (var date in cases) {
             for (var i = 0; i < cases[date].length; i++) {
                 var format = cases[date][i][0];
                 var expected = cases[date][i][1]
+                    .replace('am', 'foo')
+                    .replace('pm', 'bar')
                     .replace('AM', 'FOO')
                     .replace('PM', 'BAR');
                 var rv = jQuery.formatDateTime(format, new Date(date), opts);
@@ -106,7 +113,7 @@ describe("jQuery.formatDateTime test suite", function() {
     });
 
     it('test attribute preference over text element', function() {
-        var format = 'yy-mm-dd hh:ii:ss.u a';
+        var format = 'yy-mm-dd hh:ii:ss.u A';
         $e.attr('data-datetime', 'Mon, 09 Jul 2012 20:29:54');
         $e.text('Tue, 10 Jul 2012 20:29:54');
         var rv = $e.formatDateTime(format).text();
@@ -122,7 +129,7 @@ describe("jQuery.formatDateTime test suite", function() {
     });
 
     it('test removing attribute to prefer text element', function() {
-        var format = 'yy-mm-dd hh:ii:ss.u a';
+        var format = 'yy-mm-dd hh:ii:ss.u A';
         $e.attr('data-datetime', 'Mon, 09 Jul 2012 20:29:54');
         $e.text('Tue, 10 Jul 2012 20:29:54');
         var rv = $e.formatDateTime(format).text();
@@ -152,7 +159,7 @@ describe("jQuery.formatDateTime test suite", function() {
 
     it('test preference for format string in constructor over data-dateformat attribute', function() {
         var attrDateTime = 'Mon, 09 Jul 2012 20:29:54',
-            attrFormat = 'yy-mm-dd hh:ii:ss.u a',
+            attrFormat = 'yy-mm-dd hh:ii:ss.u A',
             attrExpected = '2012-07-09 20:29:54.0 PM',
             format = 'DD, MM d, yy',
             expected = 'Monday, July 9, 2012';
