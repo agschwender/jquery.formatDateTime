@@ -116,7 +116,7 @@ To permanently change the plugin defaults for your application, redefine them di
 
 ```javascript
 $.formatDateTime.defaults['ampmNames'] = ['am', 'pm'];
-$.formatDateTime('mm/dd/y g:ii a', new Date('2012/07/05 09:55:03'), {ampmNames: ['am', 'pm']}); // 07/05/12 9:55 am
+$.formatDateTime('mm/dd/y g:ii a', new Date('2012/07/05 09:55:03')); // 07/05/12 9:55 am
 ```
 
 Available settings are as follows:
