@@ -103,6 +103,32 @@ will produce
 <span id="example">07/05/12 9:55 AM</span>
 ```
 
+Settings
+--------
+
+The defaults for formatting are all in English and use traditional capitalization, e.g. Monday, AM and August. This may not be appropriate for all applications. To override these defaults on a case-by-case basis, pass settings to `formatDateTime`, e.g.
+
+```javascript
+$.formatDateTime('mm/dd/y g:ii a', new Date('2012/07/05 09:55:03'), {ampmNames: ['am', 'pm']}); // 07/05/12 9:55 am
+```
+
+To permanently change the plugin defaults for your application, redefine them directly, e.g.
+
+```javascript
+$.formatDateTime.defaults['ampmNames'] = ['am', 'pm'];
+$.formatDateTime('mm/dd/y g:ii a', new Date('2012/07/05 09:55:03'), {ampmNames: ['am', 'pm']}); // 07/05/12 9:55 am
+```
+
+Available settings are as follows:
+
+  * `monthNames`: names of the months, e.g. January
+  * `monthNamesShort`: shortened names of the months, e.g. Jan
+  * `dayNames`: names of the days, e.g. Monday
+  * `ampmNames`: names of the 12-hour clock periods, e.g. AM
+  * `getSuffix`: callback to convert number to ordinal suffix, e.g. 1 to st
+  * `attribute`: attribute which contains the datetime
+  * `formatAttribute`: attribute which contains the datetime format
+
 Contributing
 ============
 

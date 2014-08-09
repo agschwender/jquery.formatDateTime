@@ -1,5 +1,5 @@
 /*
- * jQuery Format Date/Time - v1.1.1 - 2014-07-10
+ * jQuery Format Date/Time - v1.1.2 - 2014-08-09
  * https://github.com/agschwender/jquery.formatDateTime
  * Copyright (c) 2014 Adam Gschwender
  * Licensed MIT, GPLv2
@@ -13,32 +13,6 @@
         factory(window.jQuery || window.$);
     }
 }(function($) {
-
-    var defaults = {
-        monthNames: ['January','February','March','April','May','June',
-                     'July','August','September','October','November',
-                     'December'],
-        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
-                          'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-                   'Friday', 'Saturday'],
-        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        ampmNames: ['AM', 'PM'],
-        getSuffix: function (num) {
-            if (num > 3 && num < 21) {
-                return 'th';
-            }
-
-            switch (num % 10) {
-            case 1:  return "st";
-            case 2:  return "nd";
-            case 3:  return "rd";
-            default: return "th";
-            }
-        },
-        attribute: 'data-datetime',
-        formatAttribute: 'data-dateformat'
-    };
 
     var ticksTo1970 = (((1970 - 1) * 365 + Math.floor(1970 / 4)
                         - Math.floor(1970 / 100)
@@ -178,7 +152,7 @@
     };
 
     $.fn.formatDateTime = function(format, settings) {
-        settings = $.extend({}, defaults, settings);
+        settings = $.extend({}, $.formatDateTime.defaults, settings);
         var date = $(this).attr(settings.attribute);
 
         // Use explicit format string first, then fallback to format attribute
@@ -250,9 +224,35 @@
        @return  string - the date in the above format
     */
     $.formatDateTime = function(format, date, settings) {
-        settings = $.extend({}, defaults, settings);
+        settings = $.extend({}, $.formatDateTime.defaults, settings);
         if (!date) { return ''; }
         return formatDateTime(format, date, settings);
+    };
+
+    $.formatDateTime.defaults = {
+        monthNames: ['January','February','March','April','May','June',
+                     'July','August','September','October','November',
+                     'December'],
+        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+                          'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+                   'Friday', 'Saturday'],
+        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        ampmNames: ['AM', 'PM'],
+        getSuffix: function (num) {
+            if (num > 3 && num < 21) {
+                return 'th';
+            }
+
+            switch (num % 10) {
+            case 1:  return "st";
+            case 2:  return "nd";
+            case 3:  return "rd";
+            default: return "th";
+            }
+        },
+        attribute: 'data-datetime',
+        formatAttribute: 'data-dateformat'
     };
 
 }));

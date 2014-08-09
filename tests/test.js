@@ -89,6 +89,22 @@ describe("jQuery.formatDateTime test suite", function() {
         }
     });
 
+    it('test date formatting, custom AM/PM defaults', function() {
+        var defaults = jQuery.extend({}, jQuery.formatDateTime.defaults);
+        jQuery.formatDateTime.defaults['ampmNames'] = ['am', 'pm'];
+        for (var date in cases) {
+            for (var i = 0; i < cases[date].length; i++) {
+                var format = cases[date][i][0];
+                var expected = cases[date][i][1]
+                    .replace('AM', 'am')
+                    .replace('PM', 'pm');
+                var rv = jQuery.formatDateTime(format, new Date(date));
+                expect(rv).toEqual(expected);
+            }
+        }
+        jQuery.formatDateTime.defaults = defaults;
+    });
+
     it('test date formatting, custom suffix', function() {
         var opts = {getSuffix: function(v) { return 'o'; }};
         for (var date in cases) {
