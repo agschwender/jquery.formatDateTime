@@ -123,7 +123,8 @@ Available settings are as follows:
 
   * `monthNames`: names of the months, e.g. January
   * `monthNamesShort`: shortened names of the months, e.g. Jan
-  * `dayNames`: names of the days, e.g. Monday
+  * `dayNames`: names of the days, e.g. Sunday
+  * `dayNamesShort`: shortened names of the days, e.g. Sun
   * `ampmNames`: names of the 12-hour clock periods, e.g. AM
   * `getSuffix`: callback to convert number to ordinal suffix, e.g. 1 to st
   * `attribute`: attribute which contains the datetime
