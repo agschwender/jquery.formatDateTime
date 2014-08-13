@@ -153,20 +153,24 @@
 
     $.fn.formatDateTime = function(format, settings) {
         settings = $.extend({}, $.formatDateTime.defaults, settings);
-        var date = $(this).attr(settings.attribute);
 
-        // Use explicit format string first, then fallback to format attribute
-        format = format || $(this).attr(settings.formatAttribute);
+        this.each(function() {
+            var date = $(this).attr(settings.attribute);
 
-        if (typeof date === 'undefined' || date === false) {
-            date = $(this).text();
-        }
+            // Use explicit format string first,
+            // then fallback to format attribute
+            var fmt = format || $(this).attr(settings.formatAttribute);
 
-        if (date === '') {
-            $(this).text('');
-        } else {
-            $(this).text(formatDateTime(format, new Date(date), settings));
-        }
+            if (typeof date === 'undefined' || date === false) {
+                date = $(this).text();
+            }
+
+            if (date === '') {
+                $(this).text('');
+            } else {
+                $(this).text(formatDateTime(fmt, new Date(date), settings));
+            }
+        });
 
         return this;
     };

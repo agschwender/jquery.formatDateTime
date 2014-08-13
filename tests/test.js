@@ -183,4 +183,24 @@ describe("jQuery.formatDateTime test suite", function() {
         expect(rv).toEqual(expected);
     });
 
+    it('test over multiple elements', function() {
+        var $f = jQuery('<span id="#test-fixture-multi" />'),
+            attrDateTime = 'Mon, 09 Jul 2012 20:29:54',
+            attrFormatE = 'yy-mm-dd hh:ii:ss.u a',
+            expectedE = '2012-07-09 20:29:54.0 PM',
+            attrFormatF = 'DD, MM d, yy',
+            expectedF = 'Monday, July 9, 2012';
+
+        $e.attr('data-datetime', attrDateTime);
+        $e.attr('data-dateformat', attrFormatE);
+
+        $f.attr('data-datetime', attrDateTime);
+        $f.attr('data-dateformat', attrFormatF);
+
+        $e.add($f).formatDateTime();
+
+        expect($e.text()).toEqual(expectedE);
+        expect($f.text()).toEqual(expectedF);
+    });
+
 });
