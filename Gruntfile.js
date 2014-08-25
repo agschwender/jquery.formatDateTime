@@ -20,6 +20,7 @@ module.exports = function(grunt) {
                 source: grunt.file.readJSON('package.json'),
                 overrides: {
                     name: 'formatDateTime',
+                    title: '<%= jquerymanifest.options.source.main %>',
                     author: '<%= jquerymanifest.options.source.author %>',
                     dependencies: {
                         jquery: ">=1.5"
