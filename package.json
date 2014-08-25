@@ -45,6 +45,10 @@
     "url": "git://github.com/agschwender/jquery.formatDateTime.git"
   },
   "main": "jquery.formatDateTime",
+  "files": [
+    "jquery.formatDateTime.js",
+    "README.md"
+  ],
   "engines": {
     "node": ">=0.8"
   },
