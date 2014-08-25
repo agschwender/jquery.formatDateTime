@@ -120,7 +120,8 @@ module.exports = function(grunt) {
                 laxbreak: true,
                 globals: {
                     jQuery: true,
-                    define: true
+                    define: true,
+                    module: true
                 }
             }
         },
