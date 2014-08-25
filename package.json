@@ -1,5 +1,5 @@
 {
-  "name": "jquery.formatDateTime",
+  "name": "jquery-formatdatetime",
   "title": "jQuery Format Date/Time",
   "description": "A jQuery plugin that converts a date object to a supplied format. It was forked from the jQuery UI DatePicker module to support time formatting as well as the original date formatting.",
   "keywords": [

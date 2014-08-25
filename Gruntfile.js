@@ -25,8 +25,8 @@ module.exports = function(grunt) {
                         jquery: ">=1.5"
                     },
                     licenses: '<%= jquerymanifest.options.source.licenses %>',
-                    docs: 'https://github.com/agschwender/<%= pkg.name %>/blob/<%= pkg.version %>/README.md',
-                    download: 'https://github.com/agschwender/<%= pkg.name %>/archive/<%= pkg.version %>.zip',
+                    docs: 'https://github.com/agschwender/<%= pkg.main %>/blob/<%= pkg.version %>/README.md',
+                    download: 'https://github.com/agschwender/<%= pkg.main %>/archive/<%= pkg.version %>.zip',
                 }
             }
         },
@@ -36,8 +36,8 @@ module.exports = function(grunt) {
                 banner: '<%= meta.banner %>'
             },
             dist: {
-                src: ['<%= pkg.name %>.js'],
-                dest: 'dist/<%= pkg.name %>.js'
+                src: ['<%= pkg.main %>.js'],
+                dest: 'dist/<%= pkg.main %>.js'
             }
         },
         jasmine: {
@@ -45,67 +45,67 @@ module.exports = function(grunt) {
                 specs: 'tests/test.js'
             },
             jQuery_1_5: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-1.5.2.js'
                 }
             },
             jQuery_1_6: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-1.6.4.js'
                 }
             },
             jQuery_1_7: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-1.7.2.js'
                 }
             },
             jQuery_1_8: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-1.8.3.js'
                 }
             },
             jQuery_1_9: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-1.9.1.js'
                 }
             },
             jQuery_1_10: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-1.10.2.js'
                 }
             },
             jQuery_1_11: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-1.11.1.js'
                 }
             },
             jQuery_2_1: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-2.1.1.js'
                 }
             },
             jQuery_latest: {
-                src: '<%= pkg.name %>.js',
+                src: '<%= pkg.main %>.js',
                 options: {
                     vendor: 'http://code.jquery.com/jquery-latest.js'
                 }
             }
         },
         watch: {
-            files: ['Gruntfile.js', '<%= pkg.name %>.js', 'tests/**/*.js'],
+            files: ['Gruntfile.js', '<%= pkg.main %>.js', 'tests/**/*.js'],
             tasks: ['jshint:src', 'jasmine']
         },
         jshint: {
-            src: ['Gruntfile.js', '<%= pkg.name %>.js', 'tests/**/*.js'],
-            dist: ['dist/<%= pkg.name %>.js'],
+            src: ['Gruntfile.js', '<%= pkg.main %>.js', 'tests/**/*.js'],
+            dist: ['dist/<%= pkg.main %>.js'],
             options: {
                 curly: true,
                 immed: true,
@@ -132,7 +132,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                    'dist/<%= pkg.main %>.min.js': ['<%= concat.dist.dest %>']
                 }
             }
         }
