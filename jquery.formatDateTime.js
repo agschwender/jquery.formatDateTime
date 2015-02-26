@@ -5,12 +5,12 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  */
 ;(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
+    if (typeof exports === 'object') {
         // Node/CommonJS style for Browserify
         module.exports = factory;
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
     } else {
         // Browser globals: jQuery or jQuery-like library, such as Zepto
         factory(window.jQuery || window.$);
