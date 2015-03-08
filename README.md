@@ -129,6 +129,7 @@ Available settings are as follows:
   * `getSuffix`: callback to convert number to ordinal suffix, e.g. 1 to st
   * `attribute`: attribute which contains the datetime
   * `formatAttribute`: attribute which contains the datetime format
+  * `utc`: render dates in UTC instead of local timezone
 
 Contributing
 ============
