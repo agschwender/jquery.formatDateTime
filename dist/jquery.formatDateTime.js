@@ -1,16 +1,16 @@
 /*
- * jQuery Format Date/Time - v1.1.4 - 2014-08-25
+ * jQuery Format Date/Time - v1.1.5 - 2015-03-08
  * https://github.com/agschwender/jquery.formatDateTime
- * Copyright (c) 2014 Adam Gschwender
+ * Copyright (c) 2015 Adam Gschwender
  * Licensed MIT, GPLv2
  */
 ;(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
+    if (typeof exports === 'object') {
         // Node/CommonJS style for Browserify
         module.exports = factory;
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
     } else {
         // Browser globals: jQuery or jQuery-like library, such as Zepto
         factory(window.jQuery || window.$);
@@ -54,15 +54,20 @@
 
         // Get the value for the supplied unit, e.g. year for y
         var getUnitValue = function(unit) {
+            var utc = settings.utc;
             switch (unit) {
-            case 'y': return date.getFullYear();
-            case 'm': return date.getMonth() + 1;
-            case 'd': return date.getDate();
-            case 'g': return date.getHours() % 12 || 12;
-            case 'h': return date.getHours();
-            case 'i': return date.getMinutes();
-            case 's': return date.getSeconds();
-            case 'u': return date.getMilliseconds();
+            case 'y': return utc ? date.getUTCFullYear() : date.getFullYear();
+            case 'm': return (utc ? date.getUTCMonth() : date.getMonth()) + 1;
+            case 'M': return utc ? date.getUTCMonth() : date.getMonth();
+            case 'd': return utc ? date.getUTCDate() : date.getDate();
+            case 'D': return utc ? date.getUTCDay() : date.getDay();
+            case 'g':
+                return (utc ? date.getUTCHours() : date.getHours()) % 12 || 12;
+            case 'h': return utc ? date.getUTCHours() : date.getHours();
+            case 'i': return utc ? date.getUTCMinutes() : date.getMinutes();
+            case 's': return utc ? date.getUTCSeconds() : date.getSeconds();
+            case 'u':
+                return utc ? date.getUTCMilliseconds() : date.getMilliseconds();
             default: return '';
             }
         };
@@ -78,12 +83,12 @@
             } else {
                 switch (format.charAt(iFormat)) {
                 case 'a':
-                    output += date.getHours() < 12
+                    output += getUnitValue('h') < 12
                         ? settings.ampmNames[0]
                         : settings.ampmNames[1];
                     break;
                 case 'd':
-                    output += formatNumber('d', date.getDate(), 2);
+                    output += formatNumber('d', getUnitValue('d'), 2);
                     break;
                 case 'S':
                     var v = getUnitValue(iFormat && format.charAt(iFormat-1));
@@ -91,7 +96,7 @@
                     break;
                 case 'D':
                     output += formatName('D',
-                                         date.getDay(),
+                                         getUnitValue('D'),
                                          settings.dayNamesShort,
                                          settings.dayNames);
                     break;
@@ -104,34 +109,33 @@
                         'o', Math.round((end - start) / 86400000), 3);
                     break;
                 case 'g':
-                    output += formatNumber('g', date.getHours() % 12 || 12, 2);
+                    output += formatNumber('g', getUnitValue('g'), 2);
                     break;
                 case 'h':
-                    output += formatNumber('h', date.getHours(), 2);
+                    output += formatNumber('h', getUnitValue('h'), 2);
                     break;
                 case 'u':
-                    output += formatNumber('u', date.getMilliseconds(), 3);
+                    output += formatNumber('u', getUnitValue('u'), 3);
                     break;
                 case 'i':
-                    output += formatNumber('i', date.getMinutes(), 2);
+                    output += formatNumber('i', getUnitValue('i'), 2);
                     break;
                 case 'm':
-                    output += formatNumber('m', date.getMonth() + 1, 2);
+                    output += formatNumber('m', getUnitValue('m'), 2);
                     break;
                 case 'M':
                     output += formatName('M',
-                                         date.getMonth(),
+                                         getUnitValue('M'),
                                          settings.monthNamesShort,
                                          settings.monthNames);
                     break;
                 case 's':
-                    output += formatNumber('s', date.getSeconds(), 2);
+                    output += formatNumber('s', getUnitValue('s'), 2);
                     break;
                 case 'y':
                     output += (lookAhead('y')
-                               ? date.getFullYear()
-                               : (date.getYear() % 100 < 10 ? '0' : '')
-                               + date.getYear() % 100);
+                               ? getUnitValue('y')
+                               : ('' + getUnitValue('y')).substr(2));
                     break;
                 case '@':
                     output += date.getTime();
@@ -228,6 +232,7 @@
                                      uses text.
            formatAttribute  string - Attribute which stores the format, defaults
                                      to data-dateformat.
+           utc              bool - render dates using UTC instead of local time
        @return  string - the date in the above format
     */
     $.formatDateTime = function(format, date, settings) {
@@ -259,7 +264,8 @@
             }
         },
         attribute: 'data-datetime',
-        formatAttribute: 'data-dateformat'
+        formatAttribute: 'data-dateformat',
+        utc: false
     };
 
 }));

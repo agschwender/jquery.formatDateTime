@@ -17,6 +17,12 @@ describe("jQuery.formatDateTime test suite", function() {
             ['mm/dd/y gg:ii:ss.u a', '01/01/12 12:00:00.0 AM'],
             ['mm/dd/y hh:ii:ss.uu a', '01/01/12 00:00:00.000 AM']
         ],
+        '2012-01-01T00:00:00+01:00': [
+            ['yy-mm-dd hh:ii:ss', '2011-12-31 23:00:00', {utc: true}]
+        ],
+        '2012-01-01': [
+            ['yy-mm-dd', '2012-01-01', {utc: true}]
+        ],
         '2001/02/03 00:04:21': [
             ['yyS mS ddS gS iS sSS', '2001st 2nd 03rd 12th 4th 21st']
         ]
@@ -32,7 +38,9 @@ describe("jQuery.formatDateTime test suite", function() {
             for (var i = 0; i < cases[date].length; i++) {
                 var format = cases[date][i][0];
                 var expected = cases[date][i][1];
-                var rv = jQuery.formatDateTime(format, new Date(date));
+                var settings = cases[date][i][2];
+                var rv = jQuery.formatDateTime(
+                    format, new Date(date), settings);
                 expect(rv).toEqual(expected);
             }
         }
@@ -44,7 +52,8 @@ describe("jQuery.formatDateTime test suite", function() {
             for (var i = 0; i < cases[date].length; i++) {
                 var format = cases[date][i][0];
                 var expected = cases[date][i][1];
-                var rv = $e.formatDateTime(format).text();
+                var settings = cases[date][i][2];
+                var rv = $e.formatDateTime(format, settings).text();
                 expect(rv).toEqual(expected);
             }
         }
@@ -57,7 +66,8 @@ describe("jQuery.formatDateTime test suite", function() {
             for (var i = 0; i < cases[date].length; i++) {
                 var format = cases[date][i][0];
                 var expected = cases[date][i][1];
-                var rv = $e.formatDateTime(format, opts).text();
+                var settings = jQuery.extend({}, opts, cases[date][i][2]);
+                var rv = $e.formatDateTime(format, settings).text();
                 expect(rv).toEqual(expected);
             }
         }
@@ -69,7 +79,8 @@ describe("jQuery.formatDateTime test suite", function() {
                 $e.text(date);
                 var format = cases[date][i][0];
                 var expected = cases[date][i][1];
-                var rv = $e.formatDateTime(format).text();
+                var settings = cases[date][i][2];
+                var rv = $e.formatDateTime(format, settings).text();
                 expect(rv).toEqual(expected);
             }
         }
@@ -83,7 +94,9 @@ describe("jQuery.formatDateTime test suite", function() {
                 var expected = cases[date][i][1]
                     .replace('AM', 'FOO')
                     .replace('PM', 'BAR');
-                var rv = jQuery.formatDateTime(format, new Date(date), opts);
+                var settings = jQuery.extend({}, opts, cases[date][i][2]);
+                var rv = jQuery.formatDateTime(
+                    format, new Date(date), settings);
                 expect(rv).toEqual(expected);
             }
         }
@@ -98,7 +111,9 @@ describe("jQuery.formatDateTime test suite", function() {
                 var expected = cases[date][i][1]
                     .replace('AM', 'am')
                     .replace('PM', 'pm');
-                var rv = jQuery.formatDateTime(format, new Date(date));
+                var settings = cases[date][i][2];
+                var rv = jQuery.formatDateTime(
+                    format, new Date(date), settings);
                 expect(rv).toEqual(expected);
             }
         }
@@ -115,7 +130,9 @@ describe("jQuery.formatDateTime test suite", function() {
                     .replace(/(\d)nd/g, '$1o')
                     .replace(/(\d)rd/g, '$1o')
                     .replace(/(\d)th/g, '$1o');
-                var rv = jQuery.formatDateTime(format, new Date(date), opts);
+                var settings = jQuery.extend({}, opts, cases[date][i][2]);
+                var rv = jQuery.formatDateTime(
+                    format, new Date(date), settings);
                 expect(rv).toEqual(expected);
             }
         }
@@ -156,11 +173,11 @@ describe("jQuery.formatDateTime test suite", function() {
 
             for (var i = 0, len = cases[date].length; i < len; i++) {
                 var format = cases[date][i][0],
-                    expected = cases[date][i][1];
+                    expected = cases[date][i][1],
+                    settings = cases[date][i][2];
 
                 $e.attr('data-dateformat', format);
-
-                var rv = $e.formatDateTime().text();
+                var rv = $e.formatDateTime(undefined, settings).text();
                 expect(rv).toEqual(expected);
             }
         }
