@@ -1,5 +1,5 @@
 /*
- * jQuery Format Date/Time - v1.1.5 - 2015-03-08
+ * jQuery Format Date/Time - v1.1.6 - 2015-03-09
  * https://github.com/agschwender/jquery.formatDateTime
  * Copyright (c) 2015 Adam Gschwender
  * Licensed MIT, GPLv2
